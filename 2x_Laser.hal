@@ -49,25 +49,39 @@ net coolant-mist <= iocontrol.0.coolant-mist
 net estop-out <= iocontrol.0.user-enable-out
 net estop-out => iocontrol.0.emc-enable-in
 
-#net estop-out => parport.0.pin-01-out
+setp parport.0.pin-01-out-invert 1
+net estop-out => parport.0.pin-01-out
+
+setp parport.0.pin-02-out-invert 1
 net xstep => parport.0.pin-02-out
-# setp parport.0.pin-02-out-reset 1
+setp parport.0.pin-02-out-reset 1
+
+setp parport.0.pin-03-out-invert 1
 net xdir => parport.0.pin-03-out
-setp parport.0.pin-03-out-invert 0
+
+setp parport.0.pin-04-out-invert 1
 net ystep => parport.0.pin-04-out
-# setp parport.0.pin-04-out-reset 1
+setp parport.0.pin-04-out-reset 1
+
 net ydir => parport.0.pin-05-out
-setp parport.0.pin-05-out-invert 1
-net wstep => parport.0.pin-06-out
+
+setp parport.0.pin-06-out-invert 1
+net laser-final => parport.0.pin-06-out
+#net wstep => parport.0.pin-06-out
 # setp parport.0.pin-06-out-reset 1
+
 net wdir => parport.0.pin-07-out
 setp parport.0.pin-07-out-invert 1
+
 net xenable => parport.0.pin-08-out
 setp parport.0.pin-08-out-invert 1
 
-net laser-exhaust => parport.0.pin-01-out
+#net laser-exhaust => parport.0.pin-01-out
 net laser-pwm => parport.0.pin-14-out
+setp parport.0.pin-16-out-invert 1
 net coolant-mist => parport.0.pin-16-out
+net coolant-mist => parport.0.pin-09-out
+setp parport.0.pin-09-out-invert 1
 net laser-final => parport.0.pin-17-out
 
 net both-w <= parport.0.pin-12-in-not
@@ -75,50 +89,46 @@ net max-home-y <= parport.0.pin-13-in-not
 net min-home-x <= parport.0.pin-15-in-not
 
 # charge pump output on pin 9
-net charge-pump-out-09 charge-pump.out => parport.0.pin-09-out
+#net charge-pump-out-09 charge-pump.out => parport.0.pin-09-out
 
-# Keling 4030 driver 1.2us step, 5us dir setup
 setp stepgen.0.position-scale [AXIS_0]SCALE
-setp stepgen.0.steplen 1200
-setp stepgen.0.stepspace 1200
-setp stepgen.0.dirhold 1000
-setp stepgen.0.dirsetup 5000
+setp stepgen.0.steplen 1
+setp stepgen.0.stepspace 0
+setp stepgen.0.dirhold 35000
+setp stepgen.0.dirsetup 35000
 setp stepgen.0.maxaccel [AXIS_0]STEPGEN_MAXACCEL
 net xpos-cmd axis.0.motor-pos-cmd => stepgen.0.position-cmd
 net xpos-fb stepgen.0.position-fb => axis.0.motor-pos-fb
 net xstep <= stepgen.0.step
 net xdir <= stepgen.0.dir
 net xenable axis.0.amp-enable-out => stepgen.0.enable
-net min-home-x => axis.0.home-sw-in
-net min-home-x => axis.0.neg-lim-sw-in
 
 setp stepgen.1.position-scale [AXIS_1]SCALE
-setp stepgen.1.steplen 1200
-setp stepgen.1.stepspace 1200
-setp stepgen.1.dirhold 1000
-setp stepgen.1.dirsetup 5000
+setp stepgen.1.steplen 1
+setp stepgen.1.stepspace 0
+setp stepgen.1.dirhold 35000
+setp stepgen.1.dirsetup 35000
 setp stepgen.1.maxaccel [AXIS_1]STEPGEN_MAXACCEL
 net ypos-cmd axis.1.motor-pos-cmd => stepgen.1.position-cmd
 net ypos-fb stepgen.1.position-fb => axis.1.motor-pos-fb
 net ystep <= stepgen.1.step
 net ydir <= stepgen.1.dir
 net yenable axis.1.amp-enable-out => stepgen.1.enable
-net max-home-y => axis.1.home-sw-in
-net max-home-y => axis.1.pos-lim-sw-in
 
-setp stepgen.2.position-scale [AXIS_8]SCALE
-setp stepgen.2.steplen 1200
-setp stepgen.2.stepspace 1200
-setp stepgen.2.dirhold 1000
-setp stepgen.2.dirsetup 5000
-setp stepgen.2.maxaccel [AXIS_8]STEPGEN_MAXACCEL
-net wpos-cmd axis.8.motor-pos-cmd => stepgen.2.position-cmd
-net wpos-fb stepgen.2.position-fb => axis.8.motor-pos-fb
-net wstep <= stepgen.2.step
-net wdir <= stepgen.2.dir
-net wenable axis.8.amp-enable-out => stepgen.2.enable
-#net both-w => axis.8.neg-lim-sw-in
-#net both-w => axis.8.pos-lim-sw-in
+setp stepgen.2.position-scale [AXIS_2]SCALE
+setp stepgen.2.steplen 1
+setp stepgen.2.stepspace 0
+setp stepgen.2.dirhold 35000
+setp stepgen.2.dirsetup 35000
+setp stepgen.2.maxaccel [AXIS_2]STEPGEN_MAXACCEL
+#net zpos-cmd axis.2.motor-pos-cmd => stepgen.2.position-cmd
+#net zpos-fb stepgen.2.position-fb => axis.2.motor-pos-fb
+net zstep <= stepgen.2.step
+net zdir <= stepgen.2.dir
+net zenable axis.2.amp-enable-out => stepgen.2.enable
+
+net estop-out <= iocontrol.0.user-enable-out
+net estop-out => iocontrol.0.emc-enable-in
 
 net zpos-cmd-fb <= axis.2.motor-pos-cmd => axis.2.motor-pos-fb
 

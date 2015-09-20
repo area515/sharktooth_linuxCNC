@@ -30,6 +30,44 @@
         <format>"02d"</format>
       </u32>
     </hbox>
+  <hbox>
+    <label>
+       <text>"Total Time"</text>
+       <font>("Helvetica",14)</font>
+     </label>
+     <u32>
+        <halpin>"total-days"</halpin>
+        <font>("Helvetica",14)</font>
+        <format>"2d"</format>
+      </u32>
+      <label>
+        <text>"d "</text>
+        <font>("Helvetica",14)</font>
+      </label>
+     <u32>
+        <halpin>"total-hours"</halpin>
+        <font>("Helvetica",14)</font>
+        <format>"2d"</format>
+      </u32>
+      <label>
+        <text>":"</text>
+        <font>("Helvetica",14)</font>
+      </label>
+      <u32>
+        <halpin>"total-minutes"</halpin>
+        <font>("Helvetica",14)</font>
+        <format>"02d"</format>
+      </u32>
+      <label>
+        <text>":"</text>
+        <font>("Helvetica",14)</font>
+        </label>
+      <u32>
+        <halpin>"total-seconds"</halpin>
+        <font>("Helvetica",14)</font>
+        <format>"02d"</format>
+      </u32>
+    </hbox>
 
     <hbox>
         <led halpin="laser-master"/>

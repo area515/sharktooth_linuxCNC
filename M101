@@ -1,0 +1,8 @@
+#!/usr/bin/python
+
+import serial
+import sys
+
+ser = serial.Serial('/dev/ttyUSB0', 9600)
+
+ser.write("S%s\n" % sys.argv[1])

@@ -34,3 +34,10 @@ net cycle-seconds pyvcp.time-seconds <= time.0.seconds
 net cycle-minutes pyvcp.time-minutes <= time.0.minutes
 net cycle-hours pyvcp.time-hours <= time.0.hours
 
+loadusr -W /home/laseruser/linuxcnc/configs/2x_laser/hourcounter.py
+net cycle-timer => hourcounter.running
+net total-seconds pyvcp.total-seconds <= hourcounter.total_seconds
+net total-minutes pyvcp.total-minutes <= hourcounter.total_minutes
+net total-hours pyvcp.total-hours <= hourcounter.total_hour
+net total-days pyvcp.total-days <= hourcounter.total_day
+

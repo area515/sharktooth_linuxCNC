@@ -1,3 +1,7 @@
+This is Area515's fork of the 2x_laser config for LinuxCNC.  It has been tweaked to work with our blacktooth laser (that we have nicknamed sharktooth)
+
+We have extended the raster capabilities to have a nice QT based gui (requires python-qt4)
+
 4/15/13: It has been a year since I posted this config and I am still using it to run my 2.x laser and am very satisfied with the results.
 
 Overview
