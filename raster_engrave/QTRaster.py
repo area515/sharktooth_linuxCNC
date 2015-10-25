@@ -64,6 +64,8 @@ class MyDialog(QtGui.QDialog):
 		if fileName:
 			inputPix = QtGui.QPixmap(fileName)
 			self.ui.PreviewView.setPixmap(inputPix)
+			filename_without_extension = '.'.join(str(fileName).split('.')[:-1])
+			self.ui.OutputFileField.setPlainText(filename_without_extension + '.ngc')
 
 
 	def onOutputFileButton(self):
